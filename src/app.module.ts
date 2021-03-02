@@ -13,6 +13,7 @@ import { RoleModule } from './modules/role/role.module'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { optionsDefaultDb } from './database/connection.db'
+import { SubsidiaryModule } from './modules/subsidiary/subsidiary.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { optionsDefaultDb } from './database/connection.db'
       entities: [__dirname + '/modules/**/*.entity{.ts,.js}'],
       migrations: [__dirname + '/database/migrations/*{.ts,.js}'],
     }),
+    SubsidiaryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

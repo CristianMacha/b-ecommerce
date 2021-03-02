@@ -14,13 +14,10 @@ export class RoleService {
     ) {}
 
     async create(role: WriteRoleDto): Promise<ReadRoleDto> {
-        const codeUpperCase = role.code.toUpperCase()
-
-        const roledb = await this.roleR.findOne({ where: { code: codeUpperCase } })
+        const roledb = await this.roleR.findOne({ where: { code: role.code } })
         if (roledb) throw new BadRequestException('El rol ya existe.')
 
         const newRole = this.roleR.create(role)
-        newRole.code = codeUpperCase
         const createdRole = await this.roleR.save(newRole)
         return plainToClass(ReadRoleDto, createdRole)
     }

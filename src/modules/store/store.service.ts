@@ -20,4 +20,9 @@ export class StoreService {
 
         return HttpStatus.CREATED
     }
+
+    async getById(storeId: number) {
+        const storedb = await this.storeR.findOne(storeId, { where: { active: true } })
+        return storedb
+    }
 }

@@ -1,4 +1,4 @@
-import { IsLowercase, IsString, IsUppercase } from 'class-validator'
+import { IsNumber, IsString, IsUppercase } from 'class-validator'
 
 export class WriteSubsidiaryDto {
     @IsString()
@@ -7,4 +7,7 @@ export class WriteSubsidiaryDto {
 
     @IsString()
     location: string
+
+    @IsNumber()
+    storeId: number
 }

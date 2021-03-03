@@ -7,19 +7,20 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
 } from 'typeorm'
+
+import { Category } from '../category/category.entity'
 import { Product } from '../product/product.entity'
-import { Store } from '../store/store.entity'
 
 @Entity()
-export class Subsidiary {
+export class SubCategory {
     @PrimaryGeneratedColumn()
     id: number
 
     @Column({ nullable: false })
-    code: string
+    name: string
 
-    @Column({ nullable: false })
-    location: string
+    @Column({ nullable: true })
+    description: string
 
     @Column({ nullable: false, default: true })
     active: boolean
@@ -30,9 +31,9 @@ export class Subsidiary {
     @UpdateDateColumn({ nullable: false, type: 'timestamp' })
     updated_at: Date
 
-    @ManyToOne((type) => Store, (store) => store.subsidiaries, { nullable: false })
-    store: Store
+    @ManyToOne((type) => Category, (category) => category.sub_categories, { nullable: false })
+    category: Category
 
-    @OneToMany((type) => Product, (product) => product.subsidiary)
+    @OneToMany((type) => Product, (product) => product.sub_category)
     products: Product[]
 }
